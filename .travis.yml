@@ -1,0 +1,33 @@
+sudo: required
+
+language: python
+
+services:
+  - docker
+
+
+env:
+  DOCKER_COMPOSE_VERSION: 1.5.0
+
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+script:
+  - git clone https://$GH_TOKEN@github.com/civicresourcegroup/civic-app.git
+  - cd civic-app
+  - mkdir backend && cd backend
+  - git clone https://$GH_TOKEN@github.com/civicresourcegroup/civic-container.git
+  - mkdir addons && cd addons
+  - for R_NAME in civic-core civic-addon-organizations civic-addon-venues;
+    do
+      git clone https://$GH_TOKEN@github.com/civicresourcegroup/$R_NAME.git;
+    done
+  - cd ../../frontend
+  - git clone -b develop https://$GH_TOKEN@github.com/civicresourcegroup/civic-app-admin.git;
+  - cd ..
+  - docker-compose run backend bash -c "cd ./app && make test"
+
+  - docker-compose up frontend
