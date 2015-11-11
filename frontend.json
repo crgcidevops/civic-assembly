@@ -1,0 +1,27 @@
+{
+  "civic-app-admin":{
+    "branch": "develop"
+  },
+  "addons": [
+    {
+      "name": "civic-app-admin-core",
+      "branch": "develop"
+    },
+    {
+      "name": "civic-app-admin-organizations",
+      "branch": "develop"
+    },
+    {
+      "name": "civic-app-admin-venues",
+      "branch": "develop"
+    },
+    {
+      "name": "civic-app-admin-pages",
+      "branch": "develop"
+    },
+    {
+      "name": "civic-app-admin-blogs",
+      "branch": "develop"
+    }
+  ]
+}

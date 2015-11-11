@@ -1,0 +1,31 @@
+{
+  "civic-container": {
+    "branch": "master"
+  },
+  "addons": [
+    {
+      "name": "civic-core",
+      "branch": "master"
+    },
+    {
+      "name": "civic-addon-organizations",
+      "branch": "master"
+    },
+    {
+      "name": "civic-addon-venues",
+      "branch": "master"
+    },
+    {
+      "name": "civic-addon-pages",
+      "branch": "master"
+    },
+    {
+      "name": "civic-addon-blogs",
+      "branch": "master"
+    },
+    {
+      "name": "civic-addon-events",
+      "branch": "master"
+    }
+  ]
+}

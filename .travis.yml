@@ -5,29 +5,72 @@ language: python
 services:
   - docker
 
-
 env:
   DOCKER_COMPOSE_VERSION: 1.5.0
+  DOCKERHUB_IMAGE_NAME: civicresourcegroup/civic
 
 before_install:
+
+# Install docker-compose
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
+#### end of docker-compose installation
 
 script:
-  - git clone https://$GH_TOKEN@github.com/civicresourcegroup/civic-app.git
-  - cd civic-app
-  - mkdir backend && cd backend
-  - git clone https://$GH_TOKEN@github.com/civicresourcegroup/civic-container.git
-  - mkdir addons && cd addons
-  - for R_NAME in civic-core civic-addon-organizations civic-addon-venues;
-    do
-      git clone https://$GH_TOKEN@github.com/civicresourcegroup/$R_NAME.git;
-    done
-  - cd ../../frontend
-  - git clone -b develop https://$GH_TOKEN@github.com/civicresourcegroup/civic-app-admin.git;
-  - cd ..
-  - docker-compose run backend bash -c "cd ./app && make test"
 
-  - docker-compose up frontend
+# Clone and setup civic-app
+  - git clone -b master https://$GH_TOKEN@github.com/civicresourcegroup/civic-app.git
+  - cd civic-app
+  - cp ../frontend.json config/frontend.json
+  - cp ../backend.json config/backend.json
+  - cp docker-compose.build.yml docker-compose.override.yml
+###
+
+# Download backend repositories
+  - make clone-backend-app
+  - cp config/local_settings.py backend/civic-container/app/civic/settings/local_settings.py
+  - mkdir backend/addons
+  - make clone-backend-addons
+##########
+
+# Download and build frontend
+  - make clone-frontend-app
+  - mkdir -p frontend/civic-app-admin/dist/components
+  - make clone-frontend-addons
+  - make bind-frontend-by-copy
+  - make build-frontend
+##############
+
+
+# Build docker images
+  - sudo docker-compose build
+
+# run backend tests
+  - docker-compose up -d db
+  - docker-compose up -d elasticsearch
+  - make test-backend
+# run db-migrations
+  - docker-compose run backend bash -c "cd app && ./manage.py migrate --noinput"
+  - make create-su
+
+# run e2e tests
+  - docker-compose up -d backend
+  - docker-compose up -d civic
+  - make test-frontend
+
+after_failure:
+
+# Push docker images to registry
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker tag civicapp_backend $DOCKERHUB_IMAGE_NAME:backend
+  - docker tag civicapp_civic $DOCKERHUB_IMAGE_NAME:civic
+  - docker push $DOCKERHUB_IMAGE_NAME:backend
+  - docker push $DOCKERHUB_IMAGE_NAME:civic
+
+# deploy on the server
+  - cd config/servers
+  - source ci.sh
+  - cd ../../deploy_scripts
+  - cat deploy_production.sh | ssh target
