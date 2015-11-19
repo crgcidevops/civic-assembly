@@ -21,7 +21,7 @@ before_install:
 script:
 
 # Clone and setup civic-app
-  - git clone -b master https://$GH_TOKEN@github.com/civicresourcegroup/civic-app.git
+  - git clone -b dev-deploy https://$GH_TOKEN@github.com/civicresourcegroup/civic-app.git
   - cd civic-app
   - cp ../frontend.json config/frontend.json
   - cp ../backend.json config/backend.json
@@ -71,6 +71,6 @@ after_failure:
 
 # deploy on the server
   - cd config/servers
-  - source ci.sh
+  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then source ci.sh ; else source dev.sh ; fi
   - cd ../../deploy_scripts
   - cat deploy_production.sh | ssh target
