@@ -4,6 +4,9 @@ language: python
 
 services:
   - docker
+  
+notifications:
+  slack: ubert:ubftPRHQKkFNs1HQmHl1px91
 
 env:
   DOCKER_COMPOSE_VERSION: 1.5.0
