@@ -31,6 +31,9 @@ install:
   - cp docker-compose.build.yml docker-compose.override.yml
 ###
 
+# Run db in advance to make it ready for migrate step
+  - docker-compose up -d db
+
 # Download backend repositories
   - make clone-backend-app
   - cp ../local_settings.py backend/civic-container/app/civic/settings/local_settings.py
@@ -52,7 +55,6 @@ install:
 
 before_script:
 
-  - docker-compose up -d db
   - docker-compose up -d elasticsearch
   - docker-compose up -d rabbitmq
 
