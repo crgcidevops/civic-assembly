@@ -50,7 +50,7 @@ install:
 # Build docker images
   - sudo docker-compose build
 
-before_script:
+script:
 
 # run backend tests
   - docker-compose up -d db
@@ -61,7 +61,7 @@ before_script:
   - docker-compose run --entrypoint "/bin/bash -c" backend "cd app && ./manage.py collectstatic --noinput"
   - docker-compose run --entrypoint "/bin/bash -c" backend "cd app && ./manage.py populate_base --force-count=1 --no-images"
 
-script:
+#script:
 
 # run e2e tests
   - docker-compose up -d backend
