@@ -54,6 +54,7 @@ before_script:
 
   - docker-compose up -d db
   - docker-compose up -d elasticsearch
+  - docker-compose up -d rabbitmq
 
 # wait until db is ready
   - source ./deploy_scripts/wait_for_db.sh
