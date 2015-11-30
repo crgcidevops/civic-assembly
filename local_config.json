@@ -1,0 +1,5 @@
+{
+  "apiUrl": "/api/admin/v1",
+  "debugInfoEnabled": true,
+  "build_number": "$BUILD_NUMBER"
+}
