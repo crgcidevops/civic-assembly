@@ -28,6 +28,7 @@ install:
   - cd civic-app
   - cp ../frontend.json config/frontend.json
   - cp ../backend.json config/backend.json
+  - BUILD_NUMBER=$TRAVIS_BUILD_NUMBER envsubst < ../local_config.json > config/local_config.json
   - cp docker-compose.build.yml docker-compose.override.yml
 ###
 
@@ -76,11 +77,9 @@ script:
 
 after_failure:
 
-
-
 # define built image names:
-  - export BACKEND_IMAGE=$DOCKERHUB_IMAGE_NAME:backend-branch-$TRAVIS_BRANCH
-  - export CIVIC_IMAGE=$DOCKERHUB_IMAGE_NAME:civic-branch-$TRAVIS_BRANCH
+  - export BACKEND_IMAGE=$DOCKERHUB_IMAGE_NAME:backend-build-$TRAVIS_BUILD_NUMBER
+  - export CIVIC_IMAGE=$DOCKERHUB_IMAGE_NAME:civic-build-$TRAVIS_BUILD_NUMBER
 
 # Push docker images to registry
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
