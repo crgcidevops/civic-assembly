@@ -24,7 +24,7 @@ before_install:
 install:
 
 # Clone and setup civic-app
-  - git clone -b master https://$GH_TOKEN@github.com/civicresourcegroup/civic-app.git
+  - git clone -b fake-s3 https://$GH_TOKEN@github.com/civicresourcegroup/civic-app.git
   - cd civic-app
   - cp ../frontend.json config/frontend.json
   - cp ../backend.json config/backend.json
@@ -61,6 +61,13 @@ before_script:
 
 # wait until db is ready
   - source ./deploy_scripts/wait_for_db.sh
+
+# Create fake-s3 bucket
+  - docker-compose up -d fake-s3
+  - sleep 3
+  - sudo bash -c 'echo "127.0.0.1 civic-local-bucket.s3.amazonaws.com" >> /etc/hosts'
+  - curl -X PUT civic-local-bucket.s3.amazonaws.com:4569
+  - curl -X GET civic-local-bucket.s3.amazonaws.com:4569
 
 # run preparations db-migrations
   - docker-compose run --entrypoint "/bin/bash -c" backend "cd app && ./manage.py migrate --noinput"

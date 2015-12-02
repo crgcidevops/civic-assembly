@@ -5,7 +5,7 @@
   "addons": [
     {
       "name": "civic-core",
-      "branch": "master"
+      "branch": "fake-s3"
     },
     {
       "name": "civic-addon-organizations",
