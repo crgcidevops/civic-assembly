@@ -75,7 +75,7 @@ script:
   - docker-compose up -d civic
   - make test-frontend
 
-after_failure:
+after_success:
 
 # define built image names:
   - export BACKEND_IMAGE=$DOCKERHUB_IMAGE_NAME:backend-build-$TRAVIS_BUILD_NUMBER
