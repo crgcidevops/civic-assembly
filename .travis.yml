@@ -68,7 +68,7 @@ script:
   - docker-compose up -d civic
   - make test-frontend
 
-after_failure:
+after_success:
 
 
 
