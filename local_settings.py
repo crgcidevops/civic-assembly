@@ -13,6 +13,8 @@ EVENTS_ALLOWED_RELATED_MODELS = ['venues', 'organizations']
 
 DEBUG = False
 
+import sys
+
 if 'test' not in sys.argv:
 	mtc_applications = [
 	    'venues_bike_share_station',
