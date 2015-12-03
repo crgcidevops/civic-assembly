@@ -23,7 +23,6 @@ if 'test' not in sys.argv:
 	    'venues_transit_stop'
 	]
 
-
 	from django.conf import settings
 
 	print len(settings.INSTALLED_APPS)
