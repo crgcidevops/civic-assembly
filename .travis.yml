@@ -75,6 +75,19 @@ script:
   - docker-compose up -d civic
   - make test-frontend
 
+after_failure:
+
+# define built image names:
+  - export BACKEND_IMAGE=$DOCKERHUB_IMAGE_NAME:backend-build-$TRAVIS_BUILD_NUMBER
+  - export CIVIC_IMAGE=$DOCKERHUB_IMAGE_NAME:civic-build-$TRAVIS_BUILD_NUMBER
+
+# Push docker images to registry
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker tag civicapp_backend $BACKEND_IMAGE
+  - docker tag civicapp_civic $CIVIC_IMAGE
+  - docker push $BACKEND_IMAGE
+  - docker push $CIVIC_IMAGE
+
 after_success:
 
 # define built image names:
