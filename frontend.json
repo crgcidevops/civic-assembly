@@ -22,6 +22,10 @@
     {
       "name": "civic-app-admin-blogs",
       "branch": "develop"
+    },
+    {
+      "name": "civic-app-admin-events",
+      "branch": "develop"
     }
   ]
 }
