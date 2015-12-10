@@ -12,4 +12,4 @@ MEDIA_ROOT = '/home/.media/'
 EVENTS_ALLOWED_RELATED_MODELS = ['venues', 'organizations']
 
 DEBUG = False
-GLOBAL_FOLDERS = ''
+GLOBAL_FOLDERS = ['avatars']
