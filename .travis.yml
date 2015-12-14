@@ -92,8 +92,8 @@ after_failure:
 after_success:
 
 # define built images names:
-  - export BACKEND_IMAGE=$DOCKERHUB_IMAGE_NAME:backend-build-$TRAVIS_BUILD_NUMBER
-  - export CIVIC_IMAGE=$DOCKERHUB_IMAGE_NAME:civic-build-$TRAVIS_BUILD_NUMBER
+  - export BACKEND_IMAGE=$DOCKERHUB_IMAGE_NAME:backend-travisbuild-$TRAVIS_BUILD_NUMBER
+  - export CIVIC_IMAGE=$DOCKERHUB_IMAGE_NAME:civic-travisbuild-$TRAVIS_BUILD_NUMBER
 
 # Push docker images to registry
 
@@ -105,5 +105,5 @@ after_success:
 # deploy on the server
   - cd config/servers
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then echo "Deploy to ci " && source ci.sh ; elif [[ "$TRAVIS_BRANCH" == "dev" ]]; then echo "Deploy to dev" && source dev.sh ; else echo "Deploy skipped" ; fi
-  - cd ../../deploy_scripts
-  - cat deploy_production.sh | envsubst | ssh target
+  - cd ../../deploy_scripts/ci
+  - cat change_images_on_server.sh | envsubst | ssh target
