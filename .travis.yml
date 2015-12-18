@@ -26,7 +26,7 @@ before_install:
 install:
 
 # Clone and setup civic-app
-  - git clone -b master https://$GH_TOKEN@github.com/civicresourcegroup/civic-app.git
+  - git clone $(cat civic-app-version.txt) https://$GH_TOKEN@github.com/civicresourcegroup/civic-app.git
   - cd civic-app
   - cp ../frontend.json config/frontend.json
   - cp ../backend.json config/backend.json
