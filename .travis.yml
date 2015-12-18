@@ -20,13 +20,13 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 #### end of docker-compose installation
-
+  - docker pull civicubertree/civic-container:branch-master
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
 install:
 
 # Clone and setup civic-app
-  - git clone -b master https://$GH_TOKEN@github.com/civicresourcegroup/civic-app.git
+  - git clone $(cat civic-app-version.txt) https://$GH_TOKEN@github.com/civicresourcegroup/civic-app.git
   - cd civic-app
   - cp ../frontend.json config/frontend.json
   - cp ../backend.json config/backend.json
