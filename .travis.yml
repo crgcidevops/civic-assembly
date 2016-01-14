@@ -28,7 +28,7 @@ install:
 # Clone and setup civic-app
   - git clone $(cat civic-app-version.txt) https://$GH_TOKEN@github.com/civicresourcegroup/civic-app.git
   - cd civic-app
-  - cp ../frontend.json config/frontend.json
+  - cp ../frontend.json config/frontend.jsonq
   - cp ../backend.json config/backend.json
   - BUILD_NUMBER=$TRAVIS_BUILD_NUMBER envsubst < ../local_config.json > config/local_config.json
   - cp docker-compose.build.yml docker-compose.override.yml
