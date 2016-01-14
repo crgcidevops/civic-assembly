@@ -2,5 +2,13 @@
   "apiUrl": "/api/admin/v1",
   
   "debugInfoEnabled": true,
-  "build_number": "$BUILD_NUMBER"
+  "build_number": "$BUILD_NUMBER",
+  "modules": [
+    "civic.admin",
+    "civic.organizations",
+    "civic.blogs",
+    "civic.venues",
+    "civic.pages",
+    "civic.events"
+  ]
 }

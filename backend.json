@@ -26,6 +26,10 @@
     {
       "name": "civic-addon-events",
       "branch": "master"
+    },
+    {
+      "name": "civic-addon-sc",
+      "branch": "master"
     }
   ]
 }
