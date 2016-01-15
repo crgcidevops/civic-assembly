@@ -1,1 +1,1 @@
--b publi-site
+-b public-site

@@ -1,6 +1,6 @@
 {
   "civic-app-admin":{
-    "branch": "boyle-heights"
+    "branch": "develop"
   },
   "addons": [
     {
@@ -20,8 +20,12 @@
       "branch": "develop"
     },
     {
+      "name": "civic-app-admin-venues",
+      "branch": "develop"
+    },
+    {
       "name": "civic-app-admin-events",
-      "branch": "boyle_heights"
+      "branch": "develop"
     }
   ]
 }
