@@ -9,6 +9,7 @@
     "civic.blogs",
     "civic.venues",
     "civic.pages",
-    "civic.events"
+    "civic.events",
+    "civic.sc"
   ]
 }
