@@ -26,6 +26,11 @@
     {
       "name": "civic-app-admin-events",
       "branch": "develop"
+    },
+    {
+      "name": "civic-app-admin-sc",
+      "branch": "develop"
     }
+
   ]
 }

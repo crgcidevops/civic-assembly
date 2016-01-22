@@ -1,5 +1,6 @@
 {
   "apiUrl": "/api/admin/v1",
+  
   "debugInfoEnabled": true,
   "build_number": "$BUILD_NUMBER",
   "modules": [
@@ -8,6 +9,7 @@
     "civic.blogs",
     "civic.venues",
     "civic.pages",
-    "civic.events"
+    "civic.events",
+    "civic.sc"
   ]
 }
