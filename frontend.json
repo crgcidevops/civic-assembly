@@ -14,23 +14,6 @@
     {
       "name": "civic-app-admin-venues",
       "branch": "develop"
-    },
-    {
-      "name": "civic-app-admin-pages",
-      "branch": "develop"
-    },
-    {
-      "name": "civic-app-admin-blogs",
-      "branch": "develop"
-    },
-    {
-      "name": "civic-app-admin-events",
-      "branch": "develop"
-    },
-    {
-      "name": "civic-app-admin-sc",
-      "branch": "develop"
     }
-
   ]
 }

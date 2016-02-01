@@ -14,22 +14,6 @@
     {
       "name": "civic-addon-venues",
       "branch": "master"
-    },
-    {
-      "name": "civic-addon-pages",
-      "branch": "master"
-    },
-    {
-      "name": "civic-addon-blogs",
-      "branch": "master"
-    },
-    {
-      "name": "civic-addon-events",
-      "branch": "master"
-    },
-    {
-      "name": "civic-addon-sc",
-      "branch": "master"
     }
   ]
 }
