@@ -8,6 +8,10 @@
       "branch": "develop"
     },
     {
+      "name": "civic-app-admin-ces",
+      "branch": "develop"
+    },
+    {
       "name": "civic-app-admin-organizations",
       "branch": "develop"
     },
