@@ -12,6 +12,10 @@
       "branch": "develop"
     },
     {
+      "name": "civic-app-admin-contacts",
+      "branch": "develop"
+    },
+    {
       "name": "civic-app-admin-organizations",
       "branch": "develop"
     },
